@@ -9,8 +9,8 @@ local RunService = game:GetService("RunService")
 local HttpService = game:GetService("HttpService")
 local UserInputService = game:GetService("UserInputService")
 
--- Configuration for the Discord webhook
-local webhookUrl = "YOUR_DISCORD_WEBHOOK_URL" -- Replace with your Discord webhook URL
+-- Get webhook URL from script parameters
+local webhookUrl = _G.WebhookUrl or "YOUR_DISCORD_WEBHOOK_URL" -- Replace with your Discord webhook URL
 
 -- Function to send a message to the Discord webhook
 -- @param content: The content of the message to send.
@@ -63,32 +63,6 @@ local function captureScreenshot()
     screenshot:Destroy()
     
     return image
-end
-
--- may not work..
--- Function to check for boost changes and send notifications
-local function checkBoostChanges()
-    local currentLuckAmt = 1 -- Placeholder, replace with actual logic
-    local currentSpeedAmt = 1 -- Placeholder, replace with actual logic
-    
-    local luckAmtToUse = 1
-    local speedAmtToUse = 1
-
-    local boostChanged = false -- Placeholder for actual detection logic
-
-    if boostChanged then
-        local embed = {
-            title = "Boost Change Detected!",
-            description = "A boost has been changed.",
-            fields = {
-                {name = "Luck Amount", value = tostring(luckAmtToUse), inline = true},
-                {name = "Speed Amount", value = tostring(speedAmtToUse), inline = true}
-            },
-            color = 0xFF0000 -- Red color for the embed
-        }
-        
-        sendToWebhook("Boost change detected!", embed)
-    end
 end
 
 -- Function to log chat messages
